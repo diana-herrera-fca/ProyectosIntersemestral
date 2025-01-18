@@ -10,19 +10,18 @@
 2. **Trabajo en Equipo:**
    - Cada equipo deberá coordinarse para dividir las tareas de desarrollo.
    - Los integrantes trabajarán colaborativamente usando **GitHub**.
-   - Cada equipo creará una **nueva rama** llamada `Proyecto` en el repositorio asignado.
+   - Cada equipo creará una **nueva rama** llamada `ProyectoEquipo_` en el repositorio asignado, siendo _ el número del equipo.
 
 3. **Antes de Comenzar:**
    - **Es obligatorio que cada equipo solicite a la profesora los requerimientos específicos del proyecto, incluyendo los detalles sobre el formato de los archivos de entrada y salida.**
    - Los equipos deben documentar los requerimientos acordados en el archivo **README.md** dentro del repositorio.
 
 4. **Uso de GitHub:**
-   - Cada integrante realizará cambios en la rama `Proyecto` y los subirá mediante **pull requests**.
+   - Cada integrante realizará cambios en la rama `ProyectoEquipo_` y los subirá mediante **pull requests**.
    - **Los pull requests serán revisados y aprobados por la profesora.**
    - En el mensaje del pull request, cada integrante debe explicar claramente los cambios realizados.
 
 ## **Sistemas Disponibles para Elegir**
-Cada equipo seleccionará uno de los siguientes proyectos:
 
 ### 1. Sistema de Cobro para Supermercado
 Gestión de productos disponibles, selección de artículos por los usuarios y generación de tickets de compra.
@@ -40,7 +39,7 @@ Gestión de la reserva de asientos en una sala de cine con actualizaciones en ti
 Manejo de productos y cantidades disponibles, con registro de movimientos en el inventario.
 
 ## **Entregables**
-1. **Código fuente** subido en la rama `Proyecto` de GitHub.
+1. **Código fuente** subido en la rama `ProyectoEquipo_` de GitHub.
 2. Archivos de entrada (`.txt`) necesarios para ejecutar el sistema, definidos según los requerimientos específicos acordados con la profesora.
 3. **Pull requests** con descripciones detalladas de los cambios realizados.
    - **La profesora revisará y aprobará los pull requests.**
@@ -59,6 +58,6 @@ El proyecto será evaluado según los siguientes criterios:
 
 ## **Recomendaciones para el Equipo**
 1. **Soliciten los requerimientos específicos:** Hablen con la profesora para definir claramente lo que se espera de su sistema, incluyendo el formato de los archivos.
-2. **Dividan las tareas:** Asignen roles (como desarrollo, pruebas, integración) para optimizar el trabajo.
+2. **Dividan las tareas**
 3. **Sean claros en los pull requests:** Detallen los cambios realizados y expliquen su importancia.
 4. **Documenten su progreso:** Mantengan el README actualizado para que la profesora pueda verificarlo fácilmente.
