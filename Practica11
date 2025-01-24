@@ -1,0 +1,100 @@
+Ejercicio 1
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
+public class Main
+{
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<>();
+		int mul=1;
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Introduce los numeros : ");
+		int n = sc.nextInt();
+		int[] arreglo = new int [n];
+		for(int i=0; i<n; i++) {
+			arreglo[i] = sc.nextInt();
+		}
+		
+		Arrays.sort(arreglo);
+		
+        for (int i = 0; i < 3; i++) {
+            list.add(arreglo[arreglo.length - 1 - i]);
+        }
+		
+		for(int i=0; i<list.size(); i++) {
+			mul*=list.get(i);
+		}
+		System.out.println(mul);
+	}
+
+
+
+
+Ejercicio 2
+
+import java.util.HashSet;
+public class Main {
+    public static int longitudSubcadena(String s){
+        HashSet<Character> caracteres = new HashSet<>();
+        int maxLen = 0;
+        char [] array = s.toCharArray();
+        
+        for(int i=0; i< s.length(); i++){
+            if(caracteres.contains(array[i])){
+            break;
+            }
+            
+            caracteres.add(array[i]);
+            maxLen++;
+        }
+        return maxLen;
+    }
+    public static void main (String[]args){
+        String s = "alopa";
+        System.out.println(longitudSubcadena(s));
+    }
+    
+}
+
+
+
+Ejercicio 3
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("Escribe la operacion");
+	  
+	            
+	        try {
+            String ecuacion = scanner.nextLine().replaceAll("\\s", ""); 
+            if (!ecuacion.matches("[0-9+-]+")) { 
+                throw new ArithmeticException("Ecuación no válida");
+            }
+
+            String[] numeros = ecuacion.split("(?=[+-])"); 
+            int resultado = 0;
+
+            for (int i = 0; i < numeros.length; i++) {
+                resultado += Integer.parseInt(numeros[i]); 
+            }
+            System.out.println("Resultado: " + resultado);
+	            
+	            
+	        } catch(Exception e) {
+	            System.out.println("Error: " +e.getMessage());
+	        }
+	        finally{
+	            System.out.println("Fin del programa");
+	        }
+	        scanner.close();
+	}
+}
