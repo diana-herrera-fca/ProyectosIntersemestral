@@ -1,0 +1,61 @@
+import java.lang.Math;
+
+class Solution {
+    public int bulbSwitch(int n) {
+        
+        return (int) Math.sqrt(n);
+
+    }
+}
+
+
+--------------------------------------
+
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        if (image[sr][sc] == newColor) return image;
+        fill(image, sr, sc, image[sr][sc], newColor);
+        return image;
+    }
+
+    private void fill(int[][] image, int sr, int sc, int color, int newColor) {
+        if (sr < 0 || sc < 0 || sr >= image.length || sc >= image[0].length || image[sr][sc] != color) {
+            return;
+        }
+        image[sr][sc] = newColor;
+        fill(image, sr - 1, sc, color, newColor);
+        fill(image, sr + 1, sc, color, newColor);
+        fill(image, sr, sc - 1, color, newColor);
+        fill(image, sr, sc + 1, color, newColor);
+    }
+}
+
+---------------------------------------
+
+class Solution {
+public String addBinary(String a, String b) {
+
+
+int i = a.length() - 1, j = b.length() - 1;
+int acarreo = 0;
+StringBuilder result = new StringBuilder();
+
+
+while (i >= 0 || j >= 0 || acarreo != 0) {
+
+
+int dig_a = (i >= 0) ? a.charAt(i) - '0' : 0;
+int dig_b = (j >= 0) ? b.charAt(j) - '0' : 0;
+
+
+int sum = dig_a + dig_b + acarreo;
+result.append(sum % 2);
+acarreo = sum / 2;
+
+
+i--;
+j--;
+}
+return result.reverse().toString();
+}
+}
