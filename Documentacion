@@ -1,1 +1,31 @@
 Borrador
+
+Nombre del proyecto
+Sistema de Encuestas
+
+Descripción general
+Este proyecto tiene como obejetivo crear un sistema que permita la creación,
+almacenamiento y análisis de encuestas mediante el lenguaje de programación Java.
+El sistema utilizara lsitas simples para gestionar datos y almacenará la información
+en archivos de texto para garantizar la persitencia de datos.
+
+Requerimientos
+Funcionales:
+1 Permitir la creacion de encuestas con preguntas y opcines.
+2 Almacenar respuestas de los usuarios en un archivo de texto.
+3 Leer y analizar los datos almacenados en las encuestas.
+4 Generar reportes estadísticos a partir de las respuestas.
+No funcionales:
+1 El sistema debe ser fácil de usar para el usuario final.
+2 El almacenamiento debe garantizar la integridad de los datos.
+Estructura del Sistema
+
+Clases Principales:
+Encuesta: Representa una encuesta con preguntas y opciones.
+GestorDeArchivos: Maneja la lectura y escritura de datos en archivos de texto.
+AnalizadorDeDatos: Realiza análisis estadísticos de las respuestas almacenadas.
+
+Instalación y Configuración
+Instalar Java Development Kit (JDK).
+Clonar el repositorio del proyecto desde GitHub: git clone https://github.com/usuario/proyecto-encuestas.git.
+Abrir el proyecto en un IDE como IntelliJ IDEA o Eclipse.
