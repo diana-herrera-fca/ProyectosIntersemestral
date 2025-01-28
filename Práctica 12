@@ -1,0 +1,74 @@
+Ejericio 202
+public class Solution {
+    public static int sumaCuadradosDigitos(int n) {
+        // Se convierte el numero a una cadena
+        String numero = Integer.toString(n);
+        int suma = 0;
+        
+        for(int i = 0; i < numero.length(); i++) {
+            int digito = Character.getNumericValue(numero.charAt(i));
+            suma += digito * digito;
+        }
+        return suma;
+    }
+    
+    public static boolean isHappy(int n) {
+        while (n != 1 && n!=4) {
+            n = sumaCuadradosDigitos(n);
+        }
+        
+        // Si llega a 1 es feliz
+        return n == 1;
+    }
+    
+    // Método main para probar
+    public static void main(String[] args) {
+        int numero = 19;
+        boolean esfeliz = isHappy(numero);
+        System.out.println("¿El número " + numero + " es feliz? " + esfeliz);
+    }
+}
+
+Ejercicio 1672
+
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        
+        int compar=0;
+        for(int i=0;i<accounts.length;i++){
+            int suma=0;     
+            for(int j=0;j<accounts[i].length;j++){
+                suma += accounts[i][j];
+            }
+           compar=Math.max(suma, compar);
+        }
+
+        return compar;
+    }
+    
+   
+}
+
+Ejercicio 412
+
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> matriz = new ArrayList<>();
+
+        for(int i=1; i<=n; i++) {
+            if(i%3 ==0 && i%5==0) {
+                matriz.add("FizzBuzz");
+            }
+            else if(i%3==0) {
+                matriz.add("Fizz");
+            }
+            else if(i%5==0) {
+                matriz.add("Buzz");
+            }
+            else {
+                matriz.add(Integer.toString(i));
+            }
+        }
+        return matriz;
+    }
+}
