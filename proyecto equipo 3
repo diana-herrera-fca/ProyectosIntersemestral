@@ -1,0 +1,47 @@
+public class Estacionamiento {
+
+    // Calcula la diferencia en minutos entre las horas y redondea a fracciones de 15 minutos
+    public static int calcularTiempoEstancia(String horaEntrada, String horaSalida) {
+        String[] entradaPartes = horaEntrada.split(":");
+        String[] salidaPartes = horaSalida.split(":");
+
+        int horaEntradaMinutos = Integer.parseInt(entradaPartes[0]) * 60 + Integer.parseInt(entradaPartes[1]);
+        int horaSalidaMinutos = Integer.parseInt(salidaPartes[0]) * 60 + Integer.parseInt(salidaPartes[1]);
+
+        int diferenciaMinutos;
+
+        // Manejar caso cuando la salida es después de la medianoche
+        if (horaSalidaMinutos < horaEntradaMinutos) {
+            diferenciaMinutos = (1440 - horaEntradaMinutos) + horaSalidaMinutos; // 1440 minutos en 24 horas
+        } else {
+            diferenciaMinutos = horaSalidaMinutos - horaEntradaMinutos;
+        }
+
+        // Redondear hacia arriba a la siguiente fracción de 15 minutos
+        return (int) Math.ceil(diferenciaMinutos / 15.0) * 15;
+    }
+
+    // Calcula la tarifa con base en los minutos
+    public static int calcularTarifa(int minutos) {
+        // Resta los primeros 15 minutos gratuitos
+        minutos -= 15;
+
+        if (minutos <= 0) {
+            return 0; // Tarifa gratuita para los primeros 15 minutos
+        }
+
+        // Calcula el costo basado en fracciones de 15 minutos
+        int fracciones = (int) Math.ceil(minutos / 15.0);
+        return fracciones * 5; // $5 por cada fracción de 15 minutos
+    }
+
+    public static void main(String[] args) {
+        // Ejemplo de uso con salida después de la medianocho
+        String horaEntrada = "23:45";
+        String horaSalida = "01:15"; // Salida después de la medianoche
+
+        int minutosEstancia = calcularTiempoEstancia(horaEntrada, horaSalida);
+        int tarifa = calcularTarifa(minutosEstancia);
+
+        System.out.println("Minutos de estancia: " + minutosEstancia);
+        System.out.println("Tarifa: $" + tarifa);
