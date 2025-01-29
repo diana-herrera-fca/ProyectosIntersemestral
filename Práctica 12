@@ -1,4 +1,4 @@
-Ejericio 202
+Ejercicio 202
 public class Solution {
     public static int sumaCuadradosDigitos(int n) {
         // Se convierte el numero a una cadena
