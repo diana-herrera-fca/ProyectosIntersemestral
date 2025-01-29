@@ -1,1 +1,41 @@
-Hola
+import java.util.Scanner;
+
+public class Main {
+
+//La función es para validar la placa del auto
+    public static boolean validarPlaca(String placa) {
+
+        //Verifica que no se deje vacío el espacio para escribir la placa
+        //Si no se escribe nada, entonces envía un mensaje de error (false)
+        if (placa == null || placa.trim().isEmpty()) {
+            System.out.println("La placa no puede estar vacía.");
+            return false;
+        }
+            //Valida que la placa no tenga caracteres especiales
+            //sólo acepta mayusculas, minusculas y números :)
+        String regex = "^[A-Za-z0-9]+$";
+
+            //matches compara la placa que se ingreso y si no coincide con el patrón,
+            //-manda error(false)
+        if (!placa.matches(regex)) {
+            System.out.println("La placa contiene caracteres no válidos.");
+            return false;
+        }
+
+        //En cambio, si la placa es válida, devuelve un true y un mensaje diciendo que es válida
+        return true;
+    }
+
+    public static void main(String[] args) {
+        //Pide al usuario que ingrese la placa y lo almacena en la variable placa
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingresa la placa del vehículo: ");
+        String placa = sc.nextLine();
+    //Si la placa es válida o no, envia un mensaje
+        if (validarPlaca(placa)) {
+            System.out.println("La placa " + placa + " es válida.");
+        } else {
+            System.out.println("La placa " + placa + " no es válida.");
+        }
+    }
+}
