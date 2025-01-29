@@ -1,0 +1,25 @@
+Breaking the records 
+
+public static List<Integer> breakingRecords(List<Integer> scores) {
+    // Write your code here
+     int least = scores.get(0);
+     int most = scores.get(0);
+    int max=0, min=0;
+    
+    for(int i=1; i<scores.size(); i++){
+        int compar=scores.get(i);
+        
+        if(least<compar){
+            least=compar;
+            max++;
+        }
+        if(most>compar){
+            most=compar;
+            min++;
+        }
+        
+        
+    }
+    
+    return Arrays.asList(max,min);
+}
