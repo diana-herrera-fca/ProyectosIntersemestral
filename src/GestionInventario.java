@@ -72,7 +72,7 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad inicial: ");
         int cantidad = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        scanner.nextLine(); 
         escribirInventario(nombreProducto, cantidad);
     }
 
@@ -88,7 +88,7 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad vendida: ");
         int cantidadVendida = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        scanner.nextLine(); 
 
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
         if (cantidadVendida > cantidadDisponible) {
@@ -111,7 +111,7 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad devuelta: ");
         int cantidad = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        scanner.nextLine(); 
         registrarMovimiento(nombreProducto, +cantidad, "devolución");
     }
 
@@ -127,7 +127,7 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad repuesta: ");
         int cantidad = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer
+        scanner.nextLine(); 
         registrarMovimiento(nombreProducto, +cantidad, "reposición");
     }
 
@@ -144,7 +144,7 @@ public class GestionInventario {
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
+            scanner.nextLine(); 
 
             switch (opcion) {
                 case 1:
