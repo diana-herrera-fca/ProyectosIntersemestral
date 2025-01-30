@@ -1,70 +1,107 @@
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 
 public class Cuestionario {
 
     public static void main(String[] args) {
 
-        String archivoSalida = "encuestas.txt";
+        String archivoEntrada = "encuestas.txt";
+        String archivoSalida = "recuentoSalida.txt";
 
-        try(Scanner scanner = new Scanner(System.in)) {
+        // Creamos las listas de las preguntas y respuestas
+        List<String> preguntas = new ArrayList<>();
+        List<List<String>> respuestas = new ArrayList<>();
 
-            GestorDeArchivos gestor = new GestorDeArchivos();
+        // Lectura del archivo
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoEntrada))) {
 
-            while(true){
+            String linea;
 
-                System.out.println("Ingrese el nombre del archivo: ");
-                String nombreEncuesta = scanner.nextLine();
+            while ((linea = br.readLine()) != null) {//Lee linea por linea hasta que no haya mas
 
-                Encuesta encuesta = new Encuesta(nombreEncuesta);
-                gestor.guardarEncuesta(archivoSalida, encuesta);
+                String[] partes = linea.split(","); // Separador que usa la coma
 
-                System.out.println("Encuesta guardada.");
+                if (partes.length == 3) {
 
-                break;
+                    String pregunta = partes[1].replace("\"", "").trim();
+                    //Sirve para limpiar tanto preguntas y respuestas
+                    String respuesta = partes[2].replace("\"", "").trim();
 
-            }//Fin de while
+                    int index = preguntas.indexOf(pregunta);//Verifica que exista la pregunta
 
-        }catch (IOException e){
+                    // Se busca si no existe la pregunta y si ese es el caso la agrega
+                    if (index == -1) { //
+                        preguntas.add(pregunta);
+                        respuestas.add(new ArrayList<>());
+                        index = preguntas.size() - 1;
+                    }
 
-            System.err.println(e.getMessage());
+                    respuestas.get(index).add(respuesta); //agrega la respuesta de la pregunta recien agrega
 
+                } // Fin if
+
+            } // Fin while
+
+        } catch (IOException e) { //
+
+            System.err.println("Error de entrada: " + e.getMessage());
+
+        } catch (Exception e) {
+
+            System.err.println("Error inesperado: " + e.getMessage());
         }
 
 
-    }//Fin de main
 
-}//Fin de Cuestionario
 
-class GestorDeArchivos{
+        // se empieza a escribir en el archivo de salida
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoSalida))) {
 
-    public void guardarEncuesta(String archivo, Encuesta encuesta) throws IOException {
+            for (int i = 0; i < preguntas.size(); i++) {//recorre todas las preguntas
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivo, true))){
+                //Si en la pregunta que se encuentra situado no tiene respuesta la salta
+                if (respuestas.get(i) == null) continue;
 
-            writer.write(encuesta.toString());
-            writer.write("////////////////////////\n");
+                //Escribe las preguntas en el nuevo archivo
+                writer.write(preguntas.get(i) + "\n");
+
+                List<String> respuestasLista = respuestas.get(i);//Lista con todas las preguntas
+                List<String> respuestasUnicas = new ArrayList<>();//Lista con las respuestas sin repetir
+                List<Integer> conteo = new ArrayList<>();//cuantas veces se repitio la pregunta
+
+                for (String respue : respuestasLista) {
+
+                    int index = respuestasUnicas.indexOf(respue);
+
+                    if (index == -1) {//Si la respuesta no está en respuestasUnicas, la agrega y su contador inicia en 1.
+                        respuestasUnicas.add(respue);
+                        conteo.add(1);
+                    } else {
+                        conteo.set(index, conteo.get(index) + 1);//Si ya existe, incrementa el contador en conteo.
+                    }
+
+                }//Fin for
+
+                for (int j = 0; j < respuestasUnicas.size(); j++) {
+
+                    writer.write(respuestasUnicas.get(j) + ": " + conteo.get(j) + "\n");
+                }//Escribe las respuestas y el recuento en el archivo
+
+                writer.write("\n");//Slato de linea
+
+            } // Fin for
+
+            System.out.println("Recuento de respuestas generado en: " + archivoSalida);
+
+        } catch (IOException e) { //
+
+            System.err.println("Error de I/O al escribir el archivo: " + e.getMessage());
+
+        } catch (Exception e) {
+
+            System.err.println("Error inesperado al escribir el archivo: " + e.getMessage());
 
         }
 
-    }
-
-}//Fin de GestorDeArchivos
-
-class Encuesta{
-
-    public String nombre;
-
-    public Encuesta(String nombre){
-
-        this.nombre = nombre;
-    }//Fin de contructor
-
-    public String toString(){
-
-        return nombre;
-
-    }
-
-
-}//Finde Encuesta
+    } // Fin de main
+} // Fin de Cuestionario
