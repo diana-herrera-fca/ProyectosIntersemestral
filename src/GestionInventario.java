@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class GestionInventario {
 
-    // Metodo para escribir en el archivo de inventario (formato: nombre, cantidad)
+    // Metodo para escribir en el archivo de inventario (formato: nombre, cantidad, preUnitario)
     public static void escribirInventario(String nombreProducto, int cantidad) {
         try (FileWriter writer = new FileWriter("inventario.txt", true)) {
             writer.write(nombreProducto + ", " + cantidad + "\n");
@@ -15,6 +15,16 @@ public class GestionInventario {
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo de inventario.");
         }
+    }
+
+    public static void actualizacionInventario(String nombreProducto, int cantidad) {
+        try(){
+
+
+        }catch (IOException e){
+
+        }
+
     }
 
     // Metodo para registrar movimientos en el archivo de movimientos (formato: nombre, cantidad, motivo)
