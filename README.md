@@ -1,68 +1,64 @@
 # Proyectos Intersemestral
-# **Proyecto Final de Programación en Java E3**
+# **Proyecto Final de Programación en Java**
 
-## **Máquina de Pago de Estacionamiento**
-1. **Descripción del Proyecto:**
-   Este proyecto consiste en desarrollar un Sistema de Máquina de Pago de Estacionamiento. 
-   El sistema permite registrar la entrada y salida de vehículos, calcular tarifas en función del tiempo de estancia
-   y procesar pagos de forma eficiente.
-   El sistema cuenta con las siguientes funcionalidades:
-   - Registrar la entrada de un vehículo: El sistema solicita la placa del vehículo y registra la hora de entrada.
-   - Procesar el pago de un vehículo: Al ingresar la placa, se calcula el tiempo de estancia, se determina la tarifa correspondiente y se muestra el monto a pagar, y el método de pago que se desee.
-   - Generar tickets: Después de procesar el pago, el sistema guarda el ticket con la información de la entrada y salida, así como la tarifa pagada.
+## **Instrucciones Generales**
+1. **Objetivo:**
+   En equipos, desarrollen uno de los cinco sistemas descritos utilizando Java.
+   - El programa debe usar exclusivamente **listas simples** (como enteros, strings o matrices).
+   - La entrada y salida de datos deben manejarse mediante **archivos de texto (txt)**.
 
-   
+2. **Trabajo en Equipo:**
+   - Cada equipo deberá coordinarse para dividir las tareas de desarrollo.
+   - Los integrantes trabajarán colaborativamente usando **GitHub**.
+   - Cada equipo creará una **nueva rama** llamada `Proyecto` en el repositorio asignado.
 
-2. **Requerimientos Específicos**
-   - Archivos de entrada - entrada.txt
-   Este archivo contendra los registros de entrada de los vehículos, incluyendo placa y hora de entrada.
-   - Archivo de salida – salida.txt
-    Este archivo registrará los pagos realizados incluyendo placa, hora de entrada, hora de salida, monto a pagar.
-   - Lógica del Estacionamiento:
-    El primer bloque de 15 minutos de estancia es gratuito.
-    Después de esos 15 minutos, se cobrará 5 pesos por cada fracción de 15 minutos, es decir, $20 la hora.
-   - Métodos de Pago y manejo de excepciones:
-   - •Efectivo: El sistema calculará el cambio depende del monto ingresado, si el pago está incompleto mostrara un mensaje de error.
-   - •Tarjeta: El sistema procesara el pago, si el pago no puede ser procesado mostrara un mensaje de error, el número de intentos máximo es de 3.
+3. **Antes de Comenzar:**
+   - **Es obligatorio que cada equipo solicite a la profesora los requerimientos específicos del proyecto, incluyendo los detalles sobre el formato de los archivos de entrada y salida.**
+   - Los equipos deben documentar los requerimientos acordados en el archivo **README.md** dentro del repositorio.
 
-3. **Cómo Ejecutarlo:**
-- $ java Main
--------
-  **Bienvenido al sistema de estacionamiento** (Se muestra el menú principal)
+4. **Uso de GitHub:**
+   - Cada integrante realizará cambios en la rama `Proyecto` y los subirá mediante **pull requests**.
+   - **Los pull requests serán revisados y aprobados por la profesora.**
+   - En el mensaje del pull request, cada integrante debe explicar claramente los cambios realizados.
 
-- **Ejemplo al seleccionar la opción 1**
-  - 1.Registrar entrada de vehículo.
-  - 2.Procesar pago y calcular tarifa.
-  - 3.Salir del sistema.
-  - Seleccione una opción: 1
-------
-Ingrese la placa del vehículo: ABC123
-- Vehículo con placa ABC123 
-- Registrado a las 10:15 AM.
+## **Sistemas Disponibles para Elegir**
+Cada equipo seleccionará uno de los siguientes proyectos:
 
--------------------------------
-**Ejemplo seleccionar opción 2**
-- 1.Registrar entrada de vehículo.
-- 2.Procesar pago y calcular tarifa.
-- 3.Salir del sistema.
-- ----
-- Seleccione una opción: 2
-- Ingrese la placa del vehículo: ABC123
-- Tiempo de estancia: 30 minutos
-- Tarifa a pagar: $10
-- ¿Método de pago (efectivo/tarjeta): efectivo
-- **Pago realizado.**
-- Cambio: $0.
+### 1. Sistema de Cobro para Supermercado
+Gestión de productos disponibles, selección de artículos por los usuarios y generación de tickets de compra.
 
+### 2. Sistema de Encuestas
+Creación y respuesta a preguntas de opción múltiple, con registro de resultados para análisis posterior.
 
--------------------------------
-**Ejemplo seleccionar opción 3**
-   - 1.Registrar entrada de vehículo.
-   - 2.Procesar pago y calcular tarifa.
-   - 3.Salir del sistema.
----
-Seleccione una opción: 3
-- Saliendo del sistema...
+### 3. Máquina de Pago de Estacionamiento
+Cálculo del cobro de vehículos estacionados y registro de pagos realizados.
 
-4. **Ejemplos de Uso:**
-  
+### 4. Sistema de Reservas de Cine
+Gestión de la reserva de asientos en una sala de cine con actualizaciones en tiempo real.
+
+### 5. Sistema de Gestión de Inventario de Tienda
+Manejo de productos y cantidades disponibles, con registro de movimientos en el inventario.
+
+## **Entregables**
+1. **Código fuente** subido en la rama `Proyecto` de GitHub.
+2. Archivos de entrada (`.txt`) necesarios para ejecutar el sistema, definidos según los requerimientos específicos acordados con la profesora.
+3. **Pull requests** con descripciones detalladas de los cambios realizados.
+   - **La profesora revisará y aprobará los pull requests.**
+4. **Documentación en GitHub:**
+   - **README.md:** Descripción del proyecto, requerimientos específicos, cómo ejecutarlo y ejemplos de uso.
+
+## **Evaluación**
+El proyecto será evaluado según los siguientes criterios:
+- **Funcionalidad (30%)**: Cumple con los requisitos establecidos.
+- **Estructura del Código (20%)**: Código modular, limpio y organizado.
+- **Uso de GitHub (10%)**: Correcto uso de ramas, commits y pull requests.
+- **Documentación (10%)**: README claro y comentarios útiles en el código.
+- **Creatividad (10%)**: Soluciones o funcionalidades adicionales.
+- **Coevaluación (10%)**: Contribución individual según evaluación del equipo.
+- **Presentación (10%)**: Claridad en la explicación y entrega del proyecto.
+
+## **Recomendaciones para el Equipo**
+1. **Soliciten los requerimientos específicos:** Hablen con la profesora para definir claramente lo que se espera de su sistema, incluyendo el formato de los archivos.
+2. **Dividan las tareas:** Asignen roles (como desarrollo, pruebas, integración) para optimizar el trabajo.
+3. **Sean claros en los pull requests:** Detallen los cambios realizados y expliquen su importancia.
+4. **Documenten su progreso:** Mantengan el README actualizado para que la profesora pueda verificarlo fácilmente.
