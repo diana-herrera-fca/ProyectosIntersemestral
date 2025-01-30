@@ -10,7 +10,7 @@ public class SistemaCine {
 * - true = asiento libre
 */
 private boolean[][] sala; //Regresa booleano para comprobar si los asientos estan disponibles u ocupados
-    //Luisprueba
+    //Luisprueb
 /**
 *
 * 1. Inicializar la sala
