@@ -1,0 +1,170 @@
+//Utilice los codigos previos de mis compañeros: Estacionamiento y calculo de la estancia, y Validar placas de auto, para unirlos.
+
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Estacionamiento {
+
+    // Para obtener la hora actual de la PC en formato HH:mm
+    public static String obtenerHoraActual() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm"); // Define el formato que necesitamos
+        return sdf.format(new Date()); // Devuelve la hora pero en una cadena
+    }
+
+    // Para registrar la entrada del auto
+    public static void registrarEntrada() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce la placa del vehículo: "); // Solicita al usuario la placa
+        String placa = scanner.nextLine();
+
+        // Valida la placa antes de registrar la entrada
+        if (!validarPlaca(placa)) {
+            System.out.println("Placa no válida. No se registró la entrada.");
+            return;
+        }
+
+        String horaEntrada = obtenerHoraActual(); // Llama a la función para obtener la hora actual
+
+        // Registrar en el archivo "entradas.txt"
+        // 'true' para append (añadir al final) al archivo
+        try (FileWriter fw = new FileWriter("entradas.txt", true);
+             PrintWriter pw = new PrintWriter(fw)) {
+            // Escribe en el archivo una nueva línea con el formato "placa, horaEntrada"
+            pw.println(placa + ", " + horaEntrada);
+
+            System.out.println("Entrada registrada: " + placa + " a las " + horaEntrada); // Registrado con éxito
+        } catch (IOException e) {
+            System.out.println("Error al registrar la entrada: " + e.getMessage()); // No se pudo registrar
+        }
+    }
+
+    // Calcula la diferencia en minutos entre las horas y redondea a fracciones de 15 minutos
+    public static int calcularTiempoEstancia(String horaEntrada, String horaSalida) {
+        String[] entradaPartes = horaEntrada.split(":");
+        String[] salidaPartes = horaSalida.split(":");
+
+        int horaEntradaMinutos = Integer.parseInt(entradaPartes[0]) * 60 + Integer.parseInt(entradaPartes[1]);
+        int horaSalidaMinutos = Integer.parseInt(salidaPartes[0]) * 60 + Integer.parseInt(salidaPartes[1]);
+
+        int diferenciaMinutos;
+
+        // Manejar caso cuando la salida es después de la medianoche
+        if (horaSalidaMinutos < horaEntradaMinutos) {
+            diferenciaMinutos = (1440 - horaEntradaMinutos) + horaSalidaMinutos; // 1440 minutos en 24 horas
+        } else {
+            diferenciaMinutos = horaSalidaMinutos - horaEntradaMinutos;
+        }
+
+        // Redondear hacia arriba a la siguiente fracción de 15 minutos
+        return (int) Math.ceil(diferenciaMinutos / 15.0) * 15;
+    }
+
+    // Calcula la tarifa con base en los minutos
+    public static int calcularTarifa(int minutos) {
+        // Resta los primeros 15 minutos gratuitos
+        minutos -= 15;
+
+        if (minutos <= 0) {
+            return 0; // Tarifa gratuita para los primeros 15 minutos
+        }
+
+        // Calcula el costo basado en fracciones de 15 minutos
+        int fracciones = (int) Math.ceil(minutos / 15.0);
+        return fracciones * 5; // $5 por cada fracción de 15 minutos
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        // Menú que permite al usuario elegir la opción
+        do {
+            System.out.println("\nE S T A C I O N A M I E N T O");
+            System.out.println("1. Registrar entrada de vehículo");
+            System.out.println("2. Calcular tarifa de salida");
+            System.out.println("3. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer del scanner
+
+            switch (opcion) { // Evalúa la opción que se eligió
+                case 1:
+                    registrarEntrada();
+                    break;
+                case 2:
+                    System.out.print("Ingresa la hora de entrada (HH:mm): ");
+                    String horaEntrada = scanner.nextLine();
+                    System.out.print("Ingresa la hora de salida (HH:mm): ");
+                    String horaSalida = scanner.nextLine();
+
+                    int minutosEstancia = calcularTiempoEstancia(horaEntrada, horaSalida);
+                    int tarifa = calcularTarifa(minutosEstancia);
+
+                    System.out.println("Minutos de estancia: " + minutosEstancia);
+                    System.out.println("Tarifa: $" + tarifa);
+
+                    procesarPago(scanner, tarifa);
+                    break;
+                case 3:
+                    System.out.println("¡Hasta Pronto! :)");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    // Función para validar la placa del auto
+    public static boolean validarPlaca(String placa) {
+
+        // Verifica que no se deje vacío el espacio para escribir la placa
+        // Si no se escribe nada, entonces envía un mensaje de error (false)
+        if (placa == null || placa.trim().isEmpty()) {
+            System.out.println("La placa no puede estar vacía.");
+            return false;
+        }
+
+        // Valida que la placa no tenga caracteres especiales
+        // Sólo acepta mayúsculas, minúsculas y números
+        String regex = "^[A-Za-z0-9]+$";
+
+        // matches compara la placa que se ingresó y si no coincide con el patrón,
+        // manda error (false)
+        if (!placa.matches(regex)) {
+            System.out.println("La placa contiene caracteres no válidos.");
+            return false;
+        }
+
+        // En cambio, si la placa es válida, devuelve un true y un mensaje diciendo que es válida
+        return true;
+    }
+
+    // Se añadio la función para procesar el pago
+    public static void procesarPago(Scanner sc, int tarifa) {
+        System.out.print("\nSelecciona el método de pago (1: Efectivo, 2: Tarjeta): ");
+        int metodoPago = sc.nextInt();
+
+        if (metodoPago == 1) {
+            // Pago en efectivo
+            System.out.print("Ingresa la cantidad en efectivo: $");
+            int efectivo = sc.nextInt();
+
+            //Se calcula el cambio o se manda un mensaje de error en caso de no ingresar suficientre dinero
+            if (efectivo >= tarifa) {
+                int cambio = efectivo - tarifa;
+                System.out.println("Pago realizado con éxito. Cambio: $" + cambio);
+            } else {
+                System.out.println("Pago insuficiente. Intenta nuevamente.");
+            }
+        } else if (metodoPago == 2) {
+            // Pago con tarjeta
+            System.out.println("Pago con tarjeta realizado con éxito.");
+        } else {
+            System.out.println("Método de pago inválido.");
+        }
+    }
+}
