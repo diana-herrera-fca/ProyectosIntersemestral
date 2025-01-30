@@ -1,0 +1,50 @@
+Agua Embotellada, 50, 10.0
+Refresco de Cola, 100, 20.0
+Jugo de Naranja, 150, 30.0
+Leche Entera, 150, 25.0
+Café Soluble, 70, 27.0
+Cerveza Artesanal, 150, 39.0
+Bebida energética, 100, 40.0
+Pan integral, 40, 40.0
+Atún de Lata, 50, 18.0
+Galletas Saladas, 50, 16.0
+Huevo (12 pzs), 20, 45.0
+Azúcar refinada, 30, 26.0
+Papel higiénico, 50, 45.0
+Shampoo, 50, 85.0
+Pasta dental, 40, 35.0
+Detergente para ropa, 30, 65.0
+Alcohol en gel, 15, 55.0
+Bolsas de basura, 15, 50.0
+Cepillo de dientes, 15, 20.0
+Arroz, 60, 22.0
+Frijoles, 80, 30.0
+Sal de mesa, 90, 15.0
+Aceite vegetal, 40, 50.0
+Mermelada de fresa, 35, 28.0
+Sopa instantánea, 100, 12.0
+Queso manchego, 25, 70.0
+Yogur natural, 30, 33.0
+Jamón de pavo, 50, 65.0
+Mantequilla, 40, 45.0
+Galletas de chocolate, 60, 25.0
+Cereal integral, 45, 42.0
+Harina de trigo, 55, 20.0
+Mayonesa, 35, 30.0
+Mostaza, 25, 28.0
+Vinagre blanco, 40, 18.0
+Papel aluminio, 20, 32.0
+Servilletas, 50, 25.0
+Jabón en barra, 70, 22.0
+Desodorante, 45, 55.0
+Crema corporal, 30, 60.0
+Esponjas para trastes, 40, 15.0
+Cloro, 50, 35.0
+Fideos para sopa, 60, 12.0
+Café molido, 30, 85.0
+Té verde, 40, 42.0
+Baterías AA, 20, 45.0
+Piloto permanente, 30, 20.0
+Pegamento escolar, 25, 18.0
+Toallas húmedas, 35, 40.0
+Protector solar, 20, 95.0
