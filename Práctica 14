@@ -1,0 +1,19 @@
+Subarray division 
+
+public static int birthday(List<Integer> s, int d, int m) {
+    // Write your code here
+    int cuenta = 0;
+    for (int i = 0; i + m - 1 < s.size(); i++) {
+        List<Integer> list = s.subList(i, i + m);
+        
+        int sum = 0;
+        for (int j = 0; j < list.size(); j++) {
+            sum += list.get(j);  
+        }
+
+        if (sum == d) {
+            cuenta++;  
+        }
+    }
+    return cuenta;
+}
