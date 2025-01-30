@@ -11,7 +11,7 @@ public class SistemaCine {
 */
 private boolean[][] sala; //Regresa booleano para comprobar si los asientos estan disponibles u ocupados
 
-    //
+    //ASIHDASHIDHAS
 /**
 *
 * 1. Inicializar la sala
