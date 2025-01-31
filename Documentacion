@@ -39,6 +39,15 @@ Uso del Sistema
 2 Ejecuta el programa para procesar la encuesta.
 3 Se generará un archivo de salida (recuentoSalida.txt) con el análisis de respuestas.
 
+Ejemplosd de uso
+¿Te gusta Java?
+- Sí: 5
+- No: 4
+
+¿Prefieres programación web?
+- Web: 3
+- Backend: 4
+
 Psoibles mejoras futuras
 Implementacion de una interfaz gráfca para mejorar interacción con el usuario.
 Soporte para exportar reusltados en formatos com CSV o JSON.
