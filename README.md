@@ -1,63 +1,135 @@
-# Proyectos Intersemestral
-# **Proyecto Final de Programación en Java**
+Descripción del Proyecto
 
-## **Instrucciones Generales**
-1. **Objetivo:**
-   En equipos, desarrollen uno de los cinco sistemas descritos utilizando Java.
-   - El programa debe usar exclusivamente **listas simples** (como enteros, strings o matrices).
-   - La entrada y salida de datos deben manejarse mediante **archivos de texto (txt)**.
+El Sistema de Gestión de Inventario de Tienda es un programa en Java diseñado para automatizar y simplificar el control de inventario en tiendas minoristas. El sistema reemplaza los procesos manuales existentes con un sistema basado en archivos que permite el seguimiento preciso de productos y sus movimientos.
+En cuanto a su alcance, el sistema maneja el registro y seguimiento de productos de uso cotidiano en tiendas minoristas, con capacidad para gestionar entre 50 y 200 productos diferentes, procesando un volumen de 20 a 50 transacciones diarias.
+La estructura del sistema se basa en dos archivos de texto principales: inventario.txt, que almacena el inventario actual, y movimientos.txt, que registra el historial de transacciones.
 
-2. **Trabajo en Equipo:**
-   - Cada equipo deberá coordinarse para dividir las tareas de desarrollo.
-   - Los integrantes trabajarán colaborativamente usando **GitHub**.
-   - Cada equipo creará una **nueva rama** llamada `ProyectoEquipo_` en el repositorio asignado, siendo _ el número del equipo.
+Requerimientos
 
-3. **Antes de Comenzar:**
-   - **Es obligatorio que cada equipo solicite a la profesora los requerimientos específicos del proyecto, incluyendo los detalles sobre el formato de los archivos de entrada y salida.**
-   - Los equipos deben documentar los requerimientos acordados en el archivo **README.md** dentro del repositorio.
+Requerimientos Funcionales
 
-4. **Uso de GitHub:**
-   - Cada integrante realizará cambios en la rama `ProyectoEquipo_` y los subirá mediante **pull requests**.
-   - **Los pull requests serán revisados y aprobados por la profesora.**
-   - En el mensaje del pull request, cada integrante debe explicar claramente los cambios realizados.
+1. Gestión de Productos
+    - Agregar nuevos productos al inventario
+    - Validar la no duplicación de productos
+    - Mantener registro de cantidad disponible
 
-## **Sistemas Disponibles para Elegir**
+2. Gestión de Movimientos
+    - Registrar ventas con reducción de inventario
+    - Procesar devoluciones con incremento de inventario
+    - Manejar reposiciones de stock
+    - Validar disponibilidad antes de ventas
 
-### 1. Sistema de Cobro para Supermercado
-Gestión de productos disponibles, selección de artículos por los usuarios y generación de tickets de compra.
+3. Formato de Datos
+    - Inventario: `nombre_producto,cantidad`
+    - Movimientos: `nombre_producto,cambio,motivo`
 
-### 2. Sistema de Encuestas
-Creación y respuesta a preguntas de opción múltiple, con registro de resultados para análisis posterior.
+4. Validaciones
+    - Cantidades: Números enteros
+    - Nombres: Caracteres alfanuméricos sin espacios externos
+    - Motivos: Limitados a "Venta", "Reposición", "Devolución"
 
-### 3. Máquina de Pago de Estacionamiento
-Cálculo del cobro de vehículos estacionados y registro de pagos realizados.
+Requerimientos No Funcionales
 
-### 4. Sistema de Reservas de Cine
-Gestión de la reserva de asientos en una sala de cine con actualizaciones en tiempo real.
+1. Rendimiento
+    - Capacidad para manejar 50-200 productos
+    - Procesamiento de 20-50 transacciones diarias
 
-### 5. Sistema de Gestión de Inventario de Tienda
-Manejo de productos y cantidades disponibles, con registro de movimientos en el inventario.
+2. Usabilidad
+    - Interfaz por línea de comandos
+    - Mensajes de error claros y específicos
 
-## **Entregables**
-1. **Código fuente** subido en la rama `ProyectoEquipo_` de GitHub.
-2. Archivos de entrada (`.txt`) necesarios para ejecutar el sistema, definidos según los requerimientos específicos acordados con la profesora.
-3. **Pull requests** con descripciones detalladas de los cambios realizados.
-   - **La profesora revisará y aprobará los pull requests.**
-4. **Documentación en GitHub:**
-   - **README.md:** Descripción del proyecto, requerimientos específicos, cómo ejecutarlo y ejemplos de uso.
+3. Confiabilidad
+    - Actualización inmediata después de cada movimiento
+    - Manejo de excepciones para errores de archivo
 
-## **Evaluación**
-El proyecto será evaluado según los siguientes criterios:
-- **Funcionalidad (30%)**: Cumple con los requisitos establecidos.
-- **Estructura del Código (20%)**: Código modular, limpio y organizado.
-- **Uso de GitHub (10%)**: Correcto uso de ramas, commits y pull requests.
-- **Documentación (10%)**: README claro y comentarios útiles en el código.
-- **Creatividad (10%)**: Soluciones o funcionalidades adicionales.
-- **Coevaluación (10%)**: Contribución individual según evaluación del equipo.
-- **Presentación (10%)**: Claridad en la explicación y entrega del proyecto.
+4. Restricciones Técnicas
+    - Implementación en Java
+    - Almacenamiento en archivos de texto plano
+    - Sin requerimientos de autenticación
 
-## **Recomendaciones para el Equipo**
-1. **Soliciten los requerimientos específicos:** Hablen con la profesora para definir claramente lo que se espera de su sistema, incluyendo el formato de los archivos.
-2. **Dividan las tareas**
-3. **Sean claros en los pull requests:** Detallen los cambios realizados y expliquen su importancia.
-4. **Documenten su progreso:** Mantengan el README actualizado para que la profesora pueda verificarlo fácilmente.
+
+Limitaciones
+- No requiere logs adicionales
+- No incluye control de acceso
+- No genera reportes adicionales más allá del archivo de movimientos
+
+
+
+Guía de ejecución
+
+A partir de la ejecución del programa se desplegará un menú de 5 opciones:
+
+1. Agregar Producto
+2. Registrar Venta
+3. Registrar Devolucion
+4. Registrar Reposicion
+5. Salir
+
+1. Agregar Producto
+Esta opción se utiliza cuando se necesita incorporar un producto completamente nuevo al inventario. El sistema verifica automáticamente que el producto no exista previamente.
+
+El sistema solicitará:
+- Nombre del producto (debe ser único)
+- Cantidad inicial en stock
+- Precio unitario del producto
+
+
+Ejemplo de uso:
+
+Seleccione una opción: 1
+Ingrese el nombre del producto: Gel Antibacterial
+Ingrese la cantidad inicial: 25
+Ingrese el precio unitario: 45.50
+
+
+Si se intenta agregar "Agua Embotellada" u otro producto existente, el sistema indicará que se use la opción de reposición en su lugar.
+
+2. Registrar Venta
+Esta opción gestiona la salida de productos por venta. El sistema realiza automáticamente:
+- Verificación de existencia del producto
+- Comprobación de stock suficiente
+- Actualización del inventario
+- Registro del movimiento
+
+
+Ejemplo de uso:
+
+Seleccione una opción: 2
+Ingrese el nombre del producto: Leche Entera
+Ingrese la cantidad vendida: 5
+
+
+El sistema verificará que haya suficientes unidades (en este caso, hay 150 unidades de Leche Entera) y realizará la venta a $25.0 por unidad.
+
+3. Registrar Devolución
+Esta opción registra la devolución de productos. El sistema:
+- Verifica que el producto exista
+- Aumenta el stock automáticamente
+- Registra la devolución en el historial
+
+
+Ejemplo de uso:
+
+Seleccione una opción: 3
+Ingrese el nombre del producto: Jugo de Naranja
+Ingrese la cantidad devuelta: 2
+
+
+El sistema aumentará el stock de Jugo de Naranja de 150 a 152 unidades.
+
+4. Registrar Reposición
+Esta opción permite aumentar el stock de productos existentes. El sistema:
+- Verifica que el producto exista
+- Suma las nuevas unidades al stock actual
+- Mantiene el mismo precio unitario
+- Registra la reposición
+
+
+Ejemplo de uso:
+
+Seleccione una opción: 4
+Ingrese el nombre del producto: Café Soluble
+Ingrese la cantidad repuesta: 30
+
+
+El stock de Café Soluble aumentará de 70 a 100 unidades, manteniendo su precio de $27.0.
