@@ -1,4 +1,5 @@
 
+
 import java.util.Scanner;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -76,8 +77,10 @@ public class Estacionamiento {
         int opcion;
         do {
             // Menú de opciones
-            System.out.println("\nE S T A C I O N A M I E N T O");
-            System.out.println("\¡Recuerda que los primeros 15 min de tu estancia son gratis!");
+            System.out.println("------------------------------");
+            System.out.println("E S T A C I O N A M I E N T O");
+             System.out.println("------------------------------");
+            System.out.println("\n¡Recuerda que los primeros 15 min de tu estancia son gratis!\n");
             System.out.println("1. Registrar entrada de vehículo");
             System.out.println("2. Calcular tarifa de salida");
             System.out.println("3. Salir");
@@ -134,7 +137,8 @@ public class Estacionamiento {
             int efectivo = sc.nextInt();
             if (efectivo >= tarifa) { // Verifica si el pago es suficiente
                 cambio = efectivo - tarifa; // Calcula el cambio
-                System.out.println("Pago realizado con éxito. Cambio: $" + cambio);
+                System.out.println("Pago realizado con éxito.");
+                System.out.println("Cambio: $" + cambio);
                 pagoExitoso = true;
             } else {
                 System.out.println("Pago insuficiente. Intenta nuevamente.");
