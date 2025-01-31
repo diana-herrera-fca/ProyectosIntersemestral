@@ -55,11 +55,58 @@ public class Main {
     /**3.-
      * Menú principal que mostrará opciones al usuario
      */
+public void mostrarMenu() {
+
+    int opcion;
+    do{
+        System.out.println("\n---- Sistema de Reservas de Cine ----");
+        System.out.println("1. Ver sala");
+        System.out.println("2. Reservar asiento");
+        System.out.println("3. Salir");
+        System.out.println("4. Seleccione una opcion");
+
+        opcion = escaner.nextInt();
+
+        switch (opcion){
+
+            case 1:
+                mostrarSala(); //Muestra la matriz de los asientos y su estado actual
+                break;
+
+                case 2;
+                reservarAsiento(); //Metodo para reservar asiento
+                    break;
+
+                    case 3:
+                        System.out.println("Saliendo del sistema...");
+                        break;
+                        default:
+                            System.out.println("Opción inválida. Intente de nuevo.");
+
+        }
+
+    }while (opcion != 3);
+
+    }
+    
 
     /**4.-
      * Muestra la sala de cine con el estado de los asientos
      */
+    public void mostrarSala() {
 
+        System.out.println("\n 1 2 3 4 5 6");//Indicador de columnas
+
+        for (int i = 0; i < 6; i++){
+            System.out.print((i + 1)+ "");
+            for (int j = 0; j < 6; j++){
+                System.out.print(sala [i][j] ? "[O]" : "[X]");//Ternario que dependiendon del estado asigna un "simbolo"
+                                                               // u otro
+            }
+            System.out.println();//Linea de espacio
+        }
+
+    }
     /**5.-
      * Permite al usuario reservar un asiento en la sala
      */
