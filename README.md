@@ -18,8 +18,28 @@ Este proyecto es un sistema básico de reservas de asientos para una sala de cin
 
 ### Requerimientos Previos
 
-- Tener instalado Java en el sistema (en caso de correr el proyecto localmente).
+- Tener instalado un SDK de Java en el sistema (en caso de correr el proyecto localmente).
 - Un compilador de Java o un entorno de desarrollo como IntelliJ IDEA o Eclipse o en linea a través de OnlineGDB.com
+
+### **Pasos para Ejecutar el Programa**
+Por practicidad este proyecto fue hecho teniendo en mente el poder ser compilado y ejecutado en linea a través de 
+el compilador en linea "OnlineGDB", por lo que es lo más práctico y recomendable.
+
+## **Ejecutar en OnlineGDB**
+
+### **Pasos para Ejecutar el Programa**
+1. Acceder a [OnlineGDB](https://www.onlinegdb.com/).
+2. Hacer clic en **"Language"** y seleccionar **Java**.
+3. Borrar el código predeterminado y copiar el contenido de el codigo fuente en SistemaDeReservasParaUnaSalaDeCine.java.
+4. Hacer clic en el botón **"Run" (▶️)** para ejecutar el programa.
+5. Interactuar con el menú de la consola ingresando las opciones correspondientes.
+
+### **Notas Importantes:**
+- OnlineGDB **no guarda automáticamente** el código si no se inicia sesión por lo que es recomendable iniciar sesión/crear una cuenta o guardar una copia en un archivo local.
+- Puede haber un pequeño **retraso en la ejecución** debido a la virtualización en línea.
+
+---
+
 
 ## Ejemplos de Uso
 
