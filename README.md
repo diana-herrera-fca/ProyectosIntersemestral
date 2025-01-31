@@ -1,63 +1,47 @@
-# Proyectos Intersemestral
-# **Proyecto Final de Programación en Java**
+# Sistema de Reserva de Asientos en una Sala de Cine
+# **Proyecto Final Equipo 4 Programación EA96**
 
-## **Instrucciones Generales**
-1. **Objetivo:**
-   En equipos, desarrollen uno de los cinco sistemas descritos utilizando Java.
-   - El programa debe usar exclusivamente **listas simples** (como enteros, strings o matrices).
-   - La entrada y salida de datos deben manejarse mediante **archivos de texto (txt)**.
+## Descripción del Proyecto
 
-2. **Trabajo en Equipo:**
-   - Cada equipo deberá coordinarse para dividir las tareas de desarrollo.
-   - Los integrantes trabajarán colaborativamente usando **GitHub**.
-   - Cada equipo creará una **nueva rama** llamada `ProyectoEquipo_` en el repositorio asignado, siendo _ el número del equipo.
+Este proyecto es un sistema básico de reservas de asientos para una sala de cine. Permite a un cliente visualizar los asientos disponibles, seleccionar y reservar uno o varios asientos.
 
-3. **Antes de Comenzar:**
-   - **Es obligatorio que cada equipo solicite a la profesora los requerimientos específicos del proyecto, incluyendo los detalles sobre el formato de los archivos de entrada y salida.**
-   - Los equipos deben documentar los requerimientos acordados en el archivo **README.md** dentro del repositorio.
+## Requerimientos Específicos
 
-4. **Uso de GitHub:**
-   - Cada integrante realizará cambios en la rama `ProyectoEquipo_` y los subirá mediante **pull requests**.
-   - **Los pull requests serán revisados y aprobados por la profesora.**
-   - En el mensaje del pull request, cada integrante debe explicar claramente los cambios realizados.
+- El sistema permite al usuario ver las butacas disponibles y seleccionar una o varias para reservar.
+- Al confirmar la reserva, el estado de las butacas se actualiza en tiempo real.
+- Se genera un registro de la reserva realizada.
+- La sala cuenta con un máximo de 36 butacas organizadas en una matriz de 6x6.
+- El sistema solo gestiona reservas para una única función y un horario específico.
+- No se permite la modificación ni cancelación de reservas una vez confirmadas.
+- La asignación de películas a la sala es manual y definida por el administrador.
+- Los horarios son estáticos y no se considerarán cambios ni atrasos en las funciones.
 
-## **Sistemas Disponibles para Elegir**
+### Requerimientos Previos
 
-### 1. Sistema de Cobro para Supermercado
-Gestión de productos disponibles, selección de artículos por los usuarios y generación de tickets de compra.
+- Tener instalado Java en el sistema (en caso de correr el proyecto localmente).
+- Un compilador de Java o un entorno de desarrollo como IntelliJ IDEA o Eclipse o en linea a través de OnlineGDB.com
 
-### 2. Sistema de Encuestas
-Creación y respuesta a preguntas de opción múltiple, con registro de resultados para análisis posterior.
+## Ejemplos de Uso
 
-### 3. Máquina de Pago de Estacionamiento
-Cálculo del cobro de vehículos estacionados y registro de pagos realizados.
+1. **Visualizar la sala:**
 
-### 4. Sistema de Reservas de Cine
-Gestión de la reserva de asientos en una sala de cine con actualizaciones en tiempo real.
+   - El usuario selecciona la opción `1` en el menú.
+   - Se muestra una representación en forma de matriz con las butacas disponibles `[O]` y ocupadas `[X]`.
 
-### 5. Sistema de Gestión de Inventario de Tienda
-Manejo de productos y cantidades disponibles, con registro de movimientos en el inventario.
+2. **Reservar un asiento:**
 
-## **Entregables**
-1. **Código fuente** subido en la rama `ProyectoEquipo_` de GitHub.
-2. Archivos de entrada (`.txt`) necesarios para ejecutar el sistema, definidos según los requerimientos específicos acordados con la profesora.
-3. **Pull requests** con descripciones detalladas de los cambios realizados.
-   - **La profesora revisará y aprobará los pull requests.**
-4. **Documentación en GitHub:**
-   - **README.md:** Descripción del proyecto, requerimientos específicos, cómo ejecutarlo y ejemplos de uso.
+   - El usuario selecciona la opción `2` en el menú.
+   - Ingresa la fila y columna deseada.
+   - Si el asiento está disponible, se confirma la reserva y se actualiza el estado de la butaca.
+   - Si el asiento está ocupado, se le solicita al usuario que seleccione otro.
 
-## **Evaluación**
-El proyecto será evaluado según los siguientes criterios:
-- **Funcionalidad (30%)**: Cumple con los requisitos establecidos.
-- **Estructura del Código (20%)**: Código modular, limpio y organizado.
-- **Uso de GitHub (10%)**: Correcto uso de ramas, commits y pull requests.
-- **Documentación (10%)**: README claro y comentarios útiles en el código.
-- **Creatividad (10%)**: Soluciones o funcionalidades adicionales.
-- **Coevaluación (10%)**: Contribución individual según evaluación del equipo.
-- **Presentación (10%)**: Claridad en la explicación y entrega del proyecto.
+3. **Salir del sistema:**
 
-## **Recomendaciones para el Equipo**
-1. **Soliciten los requerimientos específicos:** Hablen con la profesora para definir claramente lo que se espera de su sistema, incluyendo el formato de los archivos.
-2. **Dividan las tareas**
-3. **Sean claros en los pull requests:** Detallen los cambios realizados y expliquen su importancia.
-4. **Documenten su progreso:** Mantengan el README actualizado para que la profesora pueda verificarlo fácilmente.
+   - El usuario selecciona la opción `3` en el menú para salir del programa.
+
+## Autores
+
+- **Jesús Alfonso Domínguez Valdez**
+- **Briceida Martínez Hernández**
+- **Luis Eduardo Vadillo Rojas**
+- **Flavia Sofía Zuñiga Guimarais**
