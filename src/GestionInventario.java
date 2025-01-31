@@ -7,12 +7,11 @@ import java.util.Scanner;
 
 public class GestionInventario {
 
-   // Metodo para verificar si un producto ya existe en el inventario
+    // Metodo para verificar si un producto ya existe en el inventario
     public static boolean productoExiste(String nombreProducto) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get("inventario.txt"));
-            for (int i = 0; i < lineas.size(); i++) {
-                String linea = lineas.get(i);
+            for (String linea : lineas) {
                 if (linea.startsWith(nombreProducto + ",")) {
                     return true; // El producto ya existe
                 }
@@ -27,51 +26,75 @@ public class GestionInventario {
     public static int obtenerCantidadDisponible(String nombreProducto) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get("inventario.txt"));
-            for (int i = 0; i < lineas.size(); i++) {
-                String linea = lineas.get(i);
+            for (String linea : lineas) {
+                String[] partes = linea.split(", ");
                 if (linea.startsWith(nombreProducto + ",")) {
-                    String[] partes = linea.split(", ");
                     return Integer.parseInt(partes[1]); // Retorna la cantidad disponible
                 }
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo de inventario.");
         }
-        return -1; // Si el producto no existe
+        return 0; // Si el producto no existe, retornamos 0
     }
 
-    // Metodo para registrar movimientos en el archivo de movimientos 
+    // Metodo para registrar movimientos en el archivo de movimientos
     public static void registrarMovimiento(String nombreProducto, int cantidad, String motivo) {
-        double precioUnitario = obtenerPrecioUnitario(nombreProducto);
-        double precioTotal = precioUnitario * cantidad;
-
         try (FileWriter writer = new FileWriter("movimiento.txt", true)) {
-            writer.write(nombreProducto + ", " + cantidad + ", " + motivo + ", " + precioUnitario + ", " + precioTotal + "\n");
-            System.out.println("Movimiento registrado.");
+            writer.write(nombreProducto + ", " + cantidad + ", " + motivo + "\n");
+            System.out.println("Movimiento registrado: " + motivo + " de " + cantidad + " unidades.");
         } catch (IOException e) {
-            System.out.println("Error al guardar el archivo: " + e.getMessage());
-        }
-    }
+            System.out.println("Error al escribir en el archivo de movimientos.");
+        }
+    }
 
-// Metodo para actualizar la cantidad de un producto en el archivo de inventario
+    // Metodo para actualizar o agregar un producto en el inventario
     public static void actualizarInventario(String nombreProducto, int nuevaCantidad) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get("inventario.txt"));
+            boolean encontrado = false;
+
             for (int i = 0; i < lineas.size(); i++) {
                 String linea = lineas.get(i);
                 if (linea.startsWith(nombreProducto + ",")) {
                     lineas.set(i, nombreProducto + ", " + nuevaCantidad); // Actualiza la cantidad
+                    encontrado = true;
                     break;
                 }
             }
-// Escribe todas las líneas de nuevo en el archivo
+
+            if (!encontrado) {
+                lineas.add(nombreProducto + ", " + nuevaCantidad); // Agrega nuevo producto si no existia
+            }
+
+            // Escribe todas las lineas de nuevo en el archivo
             Files.write(Paths.get("inventario.txt"), lineas);
         } catch (IOException e) {
             System.out.println("Error al actualizar el archivo de inventario.");
         }
     }
 
-    // Módulo para venta
+    // Modulo para agregar un nuevo producto
+    public static void agregarProducto(Scanner scanner) {
+        System.out.print("Ingrese el nombre del producto: ");
+        String nombreProducto = scanner.nextLine();
+
+        if (productoExiste(nombreProducto)) {
+            System.out.println("El producto ya existe. Use la opcion de reposicion para agregar mas stock.");
+            return;
+        }
+
+        System.out.print("Ingrese la cantidad inicial: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+
+        // Actualiza el inventario
+        actualizarInventario(nombreProducto, cantidad);
+        registrarMovimiento(nombreProducto, cantidad, "nuevo producto");
+    }
+
+    // Modulo para venta
     public static void venta(Scanner scanner) {
         System.out.print("Ingrese el nombre del producto: ");
         String nombreProducto = scanner.nextLine();
@@ -83,21 +106,22 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad vendida: ");
         int cantidadVendida = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
         if (cantidadVendida > cantidadDisponible) {
-            System.out.println("Error: No hay suficiente stock para vender " + cantidadVendida + " unidades.");
+            System.out.println("Error: No hay suficiente stock.");
             return;
         }
-        
-        // Actualiza la cantidad en el inventario
+
+
+        // Actualiza el inventario
         int nuevaCantidad = cantidadDisponible - cantidadVendida;
         actualizarInventario(nombreProducto, nuevaCantidad);
         registrarMovimiento(nombreProducto, -cantidadVendida, "venta");
     }
 
-    // Módulo para devolución
+    // Modulo para devolucion
     public static void devolucion(Scanner scanner) {
         System.out.print("Ingrese el nombre del producto: ");
         String nombreProducto = scanner.nextLine();
@@ -109,16 +133,18 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad devuelta: ");
         int cantidad = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
+
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
         int nuevaCantidad = cantidadDisponible + cantidad;
 
-        // Actualiza la cantidad en el inventario
+
+        // Actualiza el inventario
         actualizarInventario(nombreProducto, nuevaCantidad);
-        registrarMovimiento(nombreProducto, +cantidad, "devolución");
+        registrarMovimiento(nombreProducto, cantidad, "devolucion");
     }
 
-    // Módulo para reposición
+    // Modulo para reposicion
     public static void reposicion(Scanner scanner) {
         System.out.print("Ingrese el nombre del producto: ");
         String nombreProducto = scanner.nextLine();
@@ -130,13 +156,15 @@ public class GestionInventario {
 
         System.out.print("Ingrese la cantidad repuesta: ");
         int cantidad = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
+
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
         int nuevaCantidad = cantidadDisponible + cantidad;
 
-        // Actualiza la cantidad en el inventario
+
+        // Actualiza el inventario
         actualizarInventario(nombreProducto, nuevaCantidad);
-        registrarMovimiento(nombreProducto, +cantidad, "reposición");
+        registrarMovimiento(nombreProducto, cantidad, "reposicion");
     }
 
     public static void main(String[] args) {
@@ -144,32 +172,41 @@ public class GestionInventario {
         int opcion;
 
         do {
-            System.out.println("\n--- Gestión de Inventario ---");
-            System.out.println("1. Registrar Venta");
-            System.out.println("2. Registrar Devolución");
-            System.out.println("3. Registrar Reposición");
-            System.out.println("4. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("\n--- Gestion de Inventario ---");
+            System.out.println("1. Agregar Producto");
+            System.out.println("2. Registrar Venta");
+            System.out.println("3. Registrar Devolucion");
+            System.out.println("4. Registrar Reposicion");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opcion: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Opcion invalida. Intente de nuevo.");
+                scanner.next();
+            }
             opcion = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
-                    venta(scanner);
+                    agregarProducto(scanner);
                     break;
                 case 2:
-                    devolucion(scanner);
+                    venta(scanner);
                     break;
                 case 3:
-                    reposicion(scanner);
+                    devolucion(scanner);
                     break;
                 case 4:
+                    reposicion(scanner);
+                    break;
+                case 5:
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
-                    System.out.println("Opcion no volida.");
+                    System.out.println("Opcion no valida. Intente de nuevo.");
             }
-        } while (opcion != 4);
+        } while (opcion != 5);
 
         scanner.close();
     }
