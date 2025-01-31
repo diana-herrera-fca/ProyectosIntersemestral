@@ -32,7 +32,7 @@ public class Estacionamiento {
             pw.println(placa + "," + horaEntrada); // Guarda la placa y la hora
             System.out.println("Entrada registrada: " + placa + " a las " + horaEntrada);
         } catch (IOException e) {
-            System.out.println("Error al registrar la entrada: " + e.getMessage());
+            System.out.println("Error al registrar la placa: " + e.getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class Estacionamiento {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo de entradas: " + e.getMessage());
+            System.out.println("Error al leer el archivo de entrada: " + e.getMessage());
         }
         return null; // Si no encuentra la placa, devuelve null
     }
@@ -77,6 +77,7 @@ public class Estacionamiento {
         do {
             // Menú de opciones
             System.out.println("\nE S T A C I O N A M I E N T O");
+            System.out.println("\¡Recuerda que los primeros 15 min de tu estancia son gratis!");
             System.out.println("1. Registrar entrada de vehículo");
             System.out.println("2. Calcular tarifa de salida");
             System.out.println("3. Salir");
