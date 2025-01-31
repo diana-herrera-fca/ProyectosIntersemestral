@@ -73,15 +73,14 @@ El sistema solicitará:
 - Cantidad inicial en stock
 - Precio unitario del producto
 
-Ejemplo de uso:
 
-—---------------------------------------------------------
+Ejemplo de uso:
 
 Seleccione una opción: 1
 Ingrese el nombre del producto: Gel Antibacterial
 Ingrese la cantidad inicial: 25
 Ingrese el precio unitario: 45.50
-—---------------------------------------------------------
+
 
 Si se intenta agregar "Agua Embotellada" u otro producto existente, el sistema indicará que se use la opción de reposición en su lugar.
 
@@ -92,13 +91,13 @@ Si se intenta agregar "Agua Embotellada" u otro producto existente, el sistema i
 - Actualización del inventario
 - Registro del movimiento
 
+
 Ejemplo de uso:
 
-—---------------------------------------------------------
 Seleccione una opción: 2
 Ingrese el nombre del producto: Leche Entera
 Ingrese la cantidad vendida: 5
-—---------------------------------------------------------
+
 
 El sistema verificará que haya suficientes unidades (en este caso, hay 150 unidades de Leche Entera) y realizará la venta a $25.0 por unidad.
 
@@ -108,14 +107,13 @@ El sistema verificará que haya suficientes unidades (en este caso, hay 150 unid
 - Aumenta el stock automáticamente
 - Registra la devolución en el historial
 
-Ejemplo de uso:
 
-—---------------------------------------------------------
+Ejemplo de uso:
 
 Seleccione una opción: 3
 Ingrese el nombre del producto: Jugo de Naranja
 Ingrese la cantidad devuelta: 2
-—---------------------------------------------------------
+
 
 El sistema aumentará el stock de Jugo de Naranja de 150 a 152 unidades.
 
@@ -126,14 +124,13 @@ El sistema aumentará el stock de Jugo de Naranja de 150 a 152 unidades.
 - Mantiene el mismo precio unitario
 - Registra la reposición
 
-Ejemplo de uso:
 
-—---------------------------------------------------------
+Ejemplo de uso:
 
 Seleccione una opción: 4
 Ingrese el nombre del producto: Café Soluble
 Ingrese la cantidad repuesta: 30
-—---------------------------------------------------------
+
 
 El stock de Café Soluble aumentará de 70 a 100 unidades, manteniendo su precio de $27.0.
 
