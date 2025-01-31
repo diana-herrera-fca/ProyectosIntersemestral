@@ -8,25 +8,6 @@
  * Flavia Sofia Zuñiga Guimarais
 =======
 */
-public class SistemaCine {
-
-/**
-* Estructura de datos para la sala:
-* - Usar matriz booleana 6x6
-* - false = asiento ocupado
-* - true = asiento libre
-*/
-private boolean[][] sala; //Regresa booleano para comprobar si los asientos estan disponibles u ocupados
-    //Luisprueba
-
-    
-/**
-*
-* 1. Inicializar la sala
-* 2. Marcar todos los asientos como disponibles
->>>>>>> origin/ProyectoEquipo4
-*/
-
 import java.util.*;
 public class Main {
 
@@ -74,7 +55,7 @@ public void mostrarMenu() {
                 mostrarSala(); //Muestra la matriz de los asientos y su estado actual
                 break;
 
-                case 2;
+                case 2:
                 reservarAsiento(); //Metodo para reservar asiento
                     break;
 
