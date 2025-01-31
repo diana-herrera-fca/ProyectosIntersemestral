@@ -111,6 +111,28 @@ public void mostrarMenu() {
     /**5.-
      * Permite al usuario reservar un asiento en la sala
      */
+    public void reservarAsiento() {
+        int fila, columna;
+        while (true) {
+            System.out.print("Ingrese la fila (1-6): ");
+            fila = escaner.nextInt();
+            System.out.print("Ingrese la columna (1-6): ");
+            columna = escaner.nextInt();
+
+            if (validarPosicion(fila, columna)) { //usa la funcion validarPosicion
+                if (sala[fila - 1][columna - 1]) { //Si el asiento esta ocupado o vacio envia distintos ensajes
+                    sala[fila - 1][columna - 1] = false; //Asigna el asliento como ocupado
+                    System.out.println("Reserva confirmada en fila " + fila + ", columna " + columna);
+                    break;
+                } else {
+                    System.out.println("El asiento ya está ocupado. Intente nuevamente.");
+                }
+            } else {
+                System.out.println("Posición inválida. Intente de nuevo.");
+            }
+        }
+    }
+
 
     /**6.-
      * Verifica si la posición ingresada es válida
@@ -124,7 +146,8 @@ public void mostrarMenu() {
      * Método principal que inicia el programa
      */
     public static void main(String[] args) {
-    //Poner el switch que servirá como menu
+Main cine = new Main(); //Inicia el metodo de main que inicia todos los demas en domino
+        cine.mostrarMenu();
     }
 }
 //-------------------------------------FIN DEL PROGRAMA------------------------------
