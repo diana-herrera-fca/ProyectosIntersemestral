@@ -1,7 +1,7 @@
 Descripción del Proyecto
 
 El Sistema de Gestión de Inventario de Tienda es un programa en Java diseñado para automatizar y simplificar el control de inventario en tiendas minoristas. El sistema reemplaza los procesos manuales existentes con un sistema basado en archivos que permite el seguimiento preciso de productos y sus movimientos.
-En cuanto a su alcance, el sistema maneja la lectura y seguimiento de productos de uso cotidiano en tiendas minoristas, con capacidad para gestionar entre 50 y 200 productos diferentes, procesando un volumen de 20 a 50 transacciones diarias.
+En cuanto a su alcance, el sistema maneja el registro y seguimiento de productos de uso cotidiano en tiendas minoristas, con capacidad para gestionar entre 50 y 200 productos diferentes, procesando un volumen de 20 a 50 transacciones diarias.
 La estructura del sistema se basa en dos archivos de texto principales: inventario.txt, que almacena el inventario actual, y movimientos.txt, que registra el historial de transacciones.
 
 Requerimientos
@@ -9,7 +9,7 @@ Requerimientos
 Requerimientos Funcionales
 
 1. Gestión de Productos
-    - Recibir los productos existentes por medio de una archivo txt.
+    - Agregar nuevos productos al inventario
     - Validar la no duplicación de productos
     - Mantener registro de cantidad disponible
 
