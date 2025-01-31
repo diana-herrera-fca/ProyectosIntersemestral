@@ -174,10 +174,11 @@ public void mostrarMenu() {
     /**7.-
      * Método principal que inicia el programa
      */
-    public static void main(String[] args) {
-Main cine = new Main(); //Inicia el metodo de main que inicia todos los demas en domino
-        cine.mostrarMenu();
-    }
+public static void main(String[] args) {
+    Main cine = new Main(); // Inicia el método de main que inicia todos los demás en domino
+    cine.mostrarMenu();
+    cine.guardarEnArchivo(); // Guardar el estado de la sala cuando el usuario termina
+}
 }
 //-------------------------------------FIN DEL PROGRAMA------------------------------
 
