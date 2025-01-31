@@ -44,7 +44,7 @@ Máquina de Pago de Estacionamiento | Equipo 3 |
 
 ------------------------------------------------------------------------------------------------------------------------
 
-3.Cómo Ejecutarlo
+3.Cómo Ejecutarlo y ejemplos de uso
 
 $ java Main
 Bienvenido al sistema de estacionamiento (Se muestra el menú principal)
@@ -86,5 +86,5 @@ Ejemplo seleccionar opción 3
 Saliendo del sistema...
 
 ------------------------------------------------------------------------------------------------------------------------
-4.Ejemplos de Uso:
+
 
