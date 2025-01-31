@@ -1,0 +1,56 @@
+
+Descripción General
+
+Este proyecto tiene como objetivo desarrollar un sistema que permita la lectura, almacenamiento y análisis de encuestas
+mediante el lenguaje de programación Java. Utiliza listas para gestionar las preguntas y respuestas y almacena la
+información en archivos de texto para garantizar la persistencia de los datos.
+
+Requerimientos
+
+Funcionales:
+1 Leer un archivo de texto con datos de encuestas.
+2 Almacenar preguntas y respuestas en estructuras de datos adecuadas.
+3 Analizar las respuestas y contar la frecuencia de cada una.
+4 Generar un archivo de salida con el recuento de respuestas.
+
+No Funcionales:
+1 El sistema debe ser fácil de usar y mantener.
+2 Debe garantizar la integridad y correcta manipulación de los datos.
+3 La salida generada debe ser clara y estructurada.
+
+Estructura del Sistema
+
+Clases Principales:
+Cuestionario: Contiene el método principal (main) y gestiona la lectura de datos, procesamiento y generación del archivo
+de salida.
+GestorDeArchivos (opcional): Maneja la lectura y escritura de archivos de manera modular para mejorar la organización
+del código.
+AnalizadorDeDatos (opcional): Se encarga de procesar los datos y generar reportes estadísticos.
+
+Instalación y Configuración
+
+1 Instalar Java Development Kit (JDK) si no está instalado.
+2 Clonar el repositorio del proyecto desde GitHub: git clone https://github.com/usuario/proyecto-encuestas.git
+3 Abrir el proyecto en un IDE como IntelliJ IDEA, Eclipse o VS Code con soporte para Java.
+Compilar y ejecutar el programa: javac Cuestionario.java java Cuestionario
+
+Uso del Sistema
+1 Asegúrate de que el archivo de entrada (encuesta.txt) esté en el mismo directorio que el programa.
+2 Ejecuta el programa para procesar la encuesta.
+3 Se generará un archivo de salida (recuentoSalida.txt) con el análisis de respuestas.
+
+Ejemplos de uso
+¿Te gusta Java?
+- Sí: 5
+- No: 4
+
+¿Prefieres programación web?
+- Web: 3
+- Backend: 4
+
+Psoibles mejoras futuras
+Implementacion de una interfaz gráfca para mejorar interacción con el usuario.
+Soporte para exportar reusltados en formatos com CSV o JSON.
+Integración con bases de datos para almacenamiento persistente de encuestas.
+
+Versión: 1.0
