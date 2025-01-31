@@ -1,10 +1,29 @@
 /**
 * Sistema básico de reservas de cine
+<<<<<<< HEAD
  * Equipo 4
  * Jesus Alfonso Dominguez Valdez
  * Briceida Martinez Hernandez
  * Luis Eduardo Vadillo Rojas
  * Flavia Sofia Zuñiga Guimarais
+=======
+*/
+public class SistemaCine {
+
+/**
+* Estructura de datos para la sala:
+* - Usar matriz booleana 6x6
+* - false = asiento ocupado
+* - true = asiento libre
+*/
+private boolean[][] sala; //Regresa booleano para comprobar si los asientos estan disponibles u ocupados
+    //Luisprueba
+
+/**
+*
+* 1. Inicializar la sala
+* 2. Marcar todos los asientos como disponibles
+>>>>>>> origin/ProyectoEquipo4
 */
 
 import java.util.*;
@@ -100,4 +119,5 @@ public class Main {
   *     1. Crear nueva instancia del sistema
   *     2. Mostrar menú
   *     3. Procesar selección del usuario
+ *
   */
