@@ -38,18 +38,35 @@ public class GestionInventario {
         return 0; // Si el producto no existe, retornamos 0
     }
 
+
+    //modilo para obtener el precio unitario
+    public static double obtenerPrecioUnitario(String nombreProducto) {
+        try {
+            List<String> lineas = Files.readAllLines(Paths.get("inventario.txt"));
+            for (String linea : lineas) {
+                String[] partes = linea.split(", ");
+                if (linea.startsWith(nombreProducto + ",")) {
+                    return Double.parseDouble(partes[2]); // Retorna el precio unitario
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo de inventario.");
+        }
+        return 0.0; // Si el producto no existe, retorna 0.0
+    }
+
     // Metodo para registrar movimientos en el archivo de movimientos
-    public static void registrarMovimiento(String nombreProducto, int cantidad, String motivo) {
+    public static void registrarMovimiento(String nombreProducto, int cantidad, double precioUnitario, String motivo) {
         try (FileWriter writer = new FileWriter("movimiento.txt", true)) {
-            writer.write(nombreProducto + ", " + cantidad + ", " + motivo + "\n");
-            System.out.println("Movimiento registrado: " + motivo + " de " + cantidad + " unidades.");
+            writer.write(nombreProducto + ", " + cantidad + ", "+ ", " + precioUnitario + ", " + motivo + "\n");
+            System.out.println("Movimiento registrado: " + motivo + " de " + cantidad + " unidades a $" + precioUnitario + " c/u.");
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo de movimientos.");
         }
     }
 
     // Metodo para actualizar o agregar un producto en el inventario
-    public static void actualizarInventario(String nombreProducto, int nuevaCantidad) {
+    public static void actualizarInventario(String nombreProducto, int nuevaCantidad, double precioUnitario) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get("inventario.txt"));
             boolean encontrado = false;
@@ -57,14 +74,14 @@ public class GestionInventario {
             for (int i = 0; i < lineas.size(); i++) {
                 String linea = lineas.get(i);
                 if (linea.startsWith(nombreProducto + ",")) {
-                    lineas.set(i, nombreProducto + ", " + nuevaCantidad); // Actualiza la cantidad
+                    lineas.set(i, nombreProducto + ", " + nuevaCantidad + ", " + precioUnitario); // Actualiza la cantidad
                     encontrado = true;
                     break;
                 }
             }
 
             if (!encontrado) {
-                lineas.add(nombreProducto + ", " + nuevaCantidad); // Agrega nuevo producto si no existia
+                lineas.add(nombreProducto + ", " + nuevaCantidad + ", " + precioUnitario); // Agrega nuevo producto si no existia
             }
 
             // Escribe todas las lineas de nuevo en el archivo
@@ -88,10 +105,15 @@ public class GestionInventario {
         int cantidad = scanner.nextInt();
         scanner.nextLine();
 
+        System.out.print("Ingrese el precio unitario: ");
+        double precioUnitario = scanner.nextDouble();
+        scanner.nextLine();
+
+
 
         // Actualiza el inventario
-        actualizarInventario(nombreProducto, cantidad);
-        registrarMovimiento(nombreProducto, cantidad, "nuevo producto");
+        actualizarInventario(nombreProducto, cantidad, precioUnitario);
+        registrarMovimiento(nombreProducto, cantidad, precioUnitario, "nuevo producto");
     }
 
     // Modulo para venta
@@ -109,6 +131,8 @@ public class GestionInventario {
         scanner.nextLine();
 
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
+        double precioUnitario = obtenerPrecioUnitario(nombreProducto);
+
         if (cantidadVendida > cantidadDisponible) {
             System.out.println("Error: No hay suficiente stock.");
             return;
@@ -117,8 +141,8 @@ public class GestionInventario {
 
         // Actualiza el inventario
         int nuevaCantidad = cantidadDisponible - cantidadVendida;
-        actualizarInventario(nombreProducto, nuevaCantidad);
-        registrarMovimiento(nombreProducto, -cantidadVendida, "venta");
+        actualizarInventario(nombreProducto, nuevaCantidad, precioUnitario);
+        registrarMovimiento(nombreProducto, -cantidadVendida, precioUnitario, "venta");
     }
 
     // Modulo para devolucion
@@ -136,12 +160,13 @@ public class GestionInventario {
         scanner.nextLine();
 
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
+        double precioUnitario = obtenerPrecioUnitario(nombreProducto);
         int nuevaCantidad = cantidadDisponible + cantidad;
 
 
         // Actualiza el inventario
-        actualizarInventario(nombreProducto, nuevaCantidad);
-        registrarMovimiento(nombreProducto, cantidad, "devolucion");
+        actualizarInventario(nombreProducto, nuevaCantidad, precioUnitario);
+        registrarMovimiento(nombreProducto, cantidad, precioUnitario, "devolucion");
     }
 
     // Modulo para reposicion
@@ -159,12 +184,13 @@ public class GestionInventario {
         scanner.nextLine();
 
         int cantidadDisponible = obtenerCantidadDisponible(nombreProducto);
+        double precioUnitario = obtenerPrecioUnitario(nombreProducto);
         int nuevaCantidad = cantidadDisponible + cantidad;
 
 
         // Actualiza el inventario
-        actualizarInventario(nombreProducto, nuevaCantidad);
-        registrarMovimiento(nombreProducto, cantidad, "reposicion");
+        actualizarInventario(nombreProducto, nuevaCantidad, precioUnitario);
+        registrarMovimiento(nombreProducto, cantidad, precioUnitario, "reposicion");
     }
 
     public static void main(String[] args) {
