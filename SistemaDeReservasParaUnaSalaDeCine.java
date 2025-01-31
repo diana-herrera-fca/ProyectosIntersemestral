@@ -44,6 +44,13 @@ public class Main {
     /**2.- Inicializa la sala vacia
      *
      */
+    private void inicializarSala() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                sala[i][j] = true; // Asigna todos los asientos como disponibles
+            }
+        }
+    }
 
     /**3.-
      * Menú principal que mostrará opciones al usuario
@@ -60,6 +67,10 @@ public class Main {
     /**6.-
      * Verifica si la posición ingresada es válida
      */
+    private boolean validarPosicion(int fila, int columna) {
+        return fila >= 1 && fila <= 6 && columna >= 1 && columna <= 6; //Regresa true o false si cumple o no las condiciones para un asiento valido
+    }
+
 
     /**7.-
      * Método principal que inicia el programa
@@ -115,9 +126,9 @@ public class Main {
  *     *
  *
  *     /**
-  *     Punto de entrada del programa:
-  *     1. Crear nueva instancia del sistema
-  *     2. Mostrar menú
-  *     3. Procesar selección del usuario
+ *     Punto de entrada del programa:
+ *     1. Crear nueva instancia del sistema
+ *     2. Mostrar menú
+ *     3. Procesar selección del usuario
  *
-  */
+ */
