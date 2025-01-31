@@ -42,13 +42,16 @@ public class GestionInventario {
 
     // Metodo para registrar movimientos en el archivo de movimientos 
     public static void registrarMovimiento(String nombreProducto, int cantidad, String motivo) {
+        double precioUnitario = obtenerPrecioUnitario(nombreProducto);
+        double precioTotal = precioUnitario * cantidad;
+
         try (FileWriter writer = new FileWriter("movimiento.txt", true)) {
-            writer.write(nombreProducto + ", " + cantidad + ", " + motivo + "\n");
+            writer.write(nombreProducto + ", " + cantidad + ", " + motivo + ", " + precioUnitario + ", " + precioTotal + "\n");
             System.out.println("Movimiento registrado.");
         } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo de movimientos.");
-        }
-    }
+            System.out.println("Error al guardar el archivo: " + e.getMessage());
+        }
+    }
 
 // Metodo para actualizar la cantidad de un producto en el archivo de inventario
     public static void actualizarInventario(String nombreProducto, int nuevaCantidad) {
