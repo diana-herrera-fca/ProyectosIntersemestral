@@ -164,7 +164,7 @@ public class GestionInventario {
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    System.out.println("Opcion no volida.");
             }
         } while (opcion != 4);
 
