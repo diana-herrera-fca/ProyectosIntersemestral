@@ -8,10 +8,20 @@
  * Flavia Sofia Zuñiga Guimarais
 =======
 */
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.*;
 import java.util.*;
 public class Main {
 
-    private boolean[][] sala; //Regresa booleano para comprobar si los asientos estan disponibles u ocupados
+   
+    private static final String ARCHIVO_ENTRADA = "entrada.txt";
+    private static final String ARCHIVO_SALIDA = "salida.txt";
+    private boolean[][] sala; // Matriz de asientos
     private Scanner escaner;
 
     /**1.-
@@ -33,7 +43,32 @@ public class Main {
             }
         }
     }
-
+    
+    private void cargarDesdeArchivo() {
+        File archivo = new File(ARCHIVO_ENTRADA);
+        if (!archivo.exists()) {
+            System.out.println("No se encontró archivo de entrada. Se inicializa la sala vacía.");
+            inicializarSala();
+            return;
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_ENTRADA))) {
+            for (int i = 0; i < 6; i++) {
+                String linea = br.readLine();
+                if (linea == null) {
+                    System.out.println("Archivo de entrada incompleto. Se inicializa la sala vacía.");
+                    inicializarSala();
+                    return;
+                }
+                String[] valores = linea.split(" ");
+                for (int j = 0; j < 6; j++) {
+                    sala[i][j] = valores[j].equals("O"); // "O" representa asiento libre
+                }
+            }
+        } catch (IOException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error al leer el archivo de entrada. Se inicializa la sala vacía.");
+            inicializarSala();
+        }
+    }
     /**3.-
      * Menú principal que mostrará opciones al usuario
      */
@@ -122,7 +157,20 @@ public void mostrarMenu() {
         return fila >= 1 && fila <= 6 && columna >= 1 && columna <= 6; //Regresa true o false si cumple o no las condiciones para un asiento valido
     }
 
-
+   private void guardarEnArchivo() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_SALIDA))) {
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                    bw.write(sala[i][j] ? "O" : "X");
+                    if (j < 5) bw.write(" ");
+                }
+                bw.newLine();
+            }
+            System.out.println("Estado de la sala guardado en " + ARCHIVO_SALIDA);
+        } catch (IOException e) {
+            System.out.println("Error al guardar el archivo de salida.");
+        }
+    }
     /**7.-
      * Método principal que inicia el programa
      */
