@@ -1,0 +1,97 @@
+//Se une el codigo que calcula el tiempo de estancia y tarifa, con el de validacion de placas
+
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Estacionamiento {
+
+    // Para obtener la hora actual de la PC en formato HH:mm
+    public static String obtenerHoraActual() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm"); // Define el formato que necesitamos
+        return sdf.format(new Date()); // Devuelve la hora pero en una cadena
+    }
+
+    // Para registrar la entrada del auto
+    public static void registrarEntrada() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce la placa del vehículo: "); // Solicita al usuario la placa
+        String placa = scanner.nextLine();
+
+        // Valida la placa antes de registrar la entrada
+        if (!validarPlaca(placa)) {
+            System.out.println("Placa no válida. No se registró la entrada.");
+            return;
+        }
+
+        String horaEntrada = obtenerHoraActual(); // Llama a la función para obtener la hora actual
+
+        // Registrar en el archivo "entradas.txt"
+        // 'true' para append (añadir al final) al archivo
+        try (FileWriter fw = new FileWriter("entradas.txt", true);
+             PrintWriter pw = new PrintWriter(fw)) {
+            // Escribe en el archivo una nueva línea con el formato "placa, horaEntrada"
+            pw.println(placa + ", " + horaEntrada);
+
+            System.out.println("Entrada registrada: " + placa + " a las " + horaEntrada); // Registrado con éxito
+        } catch (IOException e) {
+            System.out.println("Error al registrar la entrada: " + e.getMessage()); // No se pudo registrar
+        }
+    }
+
+    public static void mostrarPreguntasFrecuentes() {
+        System.out.println("\nPREGUNTAS FRECUENTES");
+        System.out.println("1. ¿Cuál es el costo del estacionamiento por hora?\n   - El costo es de $20 por hora o fracción.");
+        System.out.println("2. ¿Cuáles son los métodos de pago aceptados?\n   - Se acepta pago en efectivo y tarjeta.");
+        System.out.println("3. ¿Qué sucede si pierdo mi boleto de entrada?\n   - Se cobra una tarifa fija de $200 por boleto perdido.");
+        System.out.println("4. ¿El estacionamiento tiene horario de cierre?\n   - No, el estacionamiento opera las 24 horas.\n");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        // Menú que permite al usuario elegir la opción
+        do {
+            System.out.println("\nE S T A C I O N A M I E N T O");
+            System.out.println("1. Registrar entrada de vehículo");
+            System.out.println("2. Calcular tarifa de salida");
+            System.out.println("3. Preguntas frecuentes");
+            System.out.println("4. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer del scanner
+
+            switch (opcion) { // Evalúa la opción que se eligió
+                case 1:
+                    registrarEntrada();
+                    break;
+                case 2:
+                    System.out.print("Ingresa la hora de entrada (HH:mm): ");
+                    String horaEntrada = scanner.nextLine();
+                    System.out.print("Ingresa la hora de salida (HH:mm): ");
+                    String horaSalida = scanner.nextLine();
+
+                    int minutosEstancia = calcularTiempoEstancia(horaEntrada, horaSalida);
+                    int tarifa = calcularTarifa(minutosEstancia);
+
+                    System.out.println("Minutos de estancia: " + minutosEstancia);
+                    System.out.println("Tarifa: $" + tarifa);
+
+                    procesarPago(scanner, tarifa);
+                    break;
+                case 3:
+                    mostrarPreguntasFrecuentes();
+                    break;
+                case 4:
+                    System.out.println("¡Hasta Pronto! :)");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+        } while (opcion != 4);
+    }
+}

@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+public class Main {
+
+//La función es para validar la placa del auto
+    public static boolean validarPlaca(String placa) {
+
+        //Verifica que no se deje vacío el espacio para escribir la placa
+        //Si no se escribe nada, entonces envía un mensaje de error (false)
+        if (placa == null || placa.trim().isEmpty()) {
+            System.out.println("La placa no puede estar vacía.");
+            return false;
+        }
+            //Valida que la placa no tenga caracteres especiales
+            //sólo acepta mayusculas, minusculas y números :)
+        String regex = "^[A-Za-z0-9]+$";
+
+            //matches compara la placa que se ingreso y si no coincide con el patrón,
+            //-manda error(false)
+        if (!placa.matches(regex)) {
+            System.out.println("La placa contiene caracteres no válidos.");
+            return false;
+        }
+
+        //En cambio, si la placa es válida, devuelve un true y un mensaje diciendo que es válida
+        return true;
+    }
+
+    public static void main(String[] args) {
+        //Pide al usuario que ingrese la placa y lo almacena en la variable placa
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingresa la placa del vehículo: ");
+        String placa = sc.nextLine();
+    //Si la placa es válida o no, envia un mensaje
+        if (validarPlaca(placa)) {
+            System.out.println("La placa " + placa + " es válida.");
+        } else {
+            System.out.println("La placa " + placa + " no es válida.");
+        }
+    }
+}
+
+
+//Bloque para el archivo de entrada:
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Estacionamiento {
+
+    //Para obtener la hora actual de la pc, la pide en formato HH:mm para contar los minutos
+    public static String obtenerHoraActual() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm"); //Define el formato que necesitamos
+        return sdf.format(new Date()); // devuelve la hora pero en una cadena
+    }
+
+    //Para registrar la entrada del auto
+    public static void registrarEntrada() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce la placa del vehículo: ");//solicita al usuario la placa
+        String placa = scanner.nextLine();
+
+        String horaEntrada = obtenerHoraActual(); //llama a la funcion para obtener la hora actual
+
+        // Registrar en el archivo "entradas.txt"
+        // 'true' para append(añadir al final) al archivo
+        try (FileWriter fw = new FileWriter("entradas.txt", true);
+             PrintWriter pw = new PrintWriter(fw)) {
+            //Escribe en el archivo una nueva linea, pero con el formato "placa, horaEntrada"
+            pw.println(placa + ", " + horaEntrada);
+
+            System.out.println("Entrada registrada: " + placa + " a las " + horaEntrada);//registrado con éxito
+        } catch (IOException e) {
+            System.out.println("Error al registrar la entrada: " + e.getMessage());//No se pudo registrar
+        }
+    }
+
+    public static void main(String[] args) {
+        // Menú principal del sistema
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        //Menú que permite al usuario elegir la opción
+        do {
+            System.out.println("\nE S T A C I O N A M I E N T O");
+            System.out.println("1. Registrar entrada de vehículo");
+            System.out.println("2. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer del scanner
+
+            switch (opcion) { //Evalua la opción que se eligió
+                case 1:
+                    registrarEntrada();
+                    break;
+                case 2:
+                    System.out.println("¡Hasta Pronto! :)");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+        } while (opcion != 2);
+    }
+}
